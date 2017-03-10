@@ -1,0 +1,19 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{user.login.username}}'s details</ion-title>
+    <p>{{user?.name.first}}</p>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>Name</ion-label>
+      <p>{{user?.name.first}}</p>
+    </ion-item>
+  </ion-list> 
+</ion-content>
