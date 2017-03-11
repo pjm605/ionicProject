@@ -6,6 +6,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { UsersPage } from '../pages/users/users';
 import { LoginPage } from '../pages/login/login';
 import { NotesPage } from '../pages/notes/notes';
+import { LoginDetailsPage } from '../pages/login-details/login-details';
 
 
 import { Auth } from '@ionic/cloud-angular';
@@ -30,7 +31,8 @@ export class MyApp {
 
     this.pages = [
       { title: 'Users', component: UsersPage },
-      { title: 'Notes', component: NotesPage }
+      { title: 'Notes', component: NotesPage },
+      { title: 'Login Details', component: LoginDetailsPage },
     ];
 
     if (auth.isAuthenticated())

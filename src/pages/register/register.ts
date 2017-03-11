@@ -8,23 +8,25 @@ import { Auth, UserDetails } from '@ionic/cloud-angular';
 })
 export class RegisterPage {
 	createSuccess = false;
-	registerCredentials = { email: '', password: ''};
+	registerCredentials = { name: '', email: '', password: ''};
 
   constructor(private navCtrl: NavController, public navParams: NavParams,
     public auth: Auth, private alertCtrl: AlertController) {}
 
   public register () {
     let userDetails: UserDetails = {
+      'name': this.registerCredentials.name,
       'email': this.registerCredentials.email,
       'password': this.registerCredentials.password};
 
     this.auth.signup(userDetails).then(() => {
       this.createSuccess = true;
       this.showPopup("Success", "Account created.");
-      this.auth.login('basic', {
-        'email': userDetails.email,
-        'password': userDetails.password
-      });
+      
+      // this.auth.login('basic', {
+      //   'email': userDetails.email,
+      //   'password': userDetails.password
+      // });
     }, (err) => {
       this.showPopup("Error", err);
     });

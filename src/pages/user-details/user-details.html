@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{user?.login.username}}'s Details</ion-title>
+    <ion-title>{{user?.name.first}}'s Details</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,9 +20,16 @@
             <img [src]="user?.picture.thumbnail">
           </ion-avatar>
       </ion-thumbnail>
-      <h2>{{user?.name.first}}</h2>
+      <h2 text-uppercase >{{user?.name.first}} {{user?.name.last}}</h2>
       <p>{{user?.email}}</p>
 
+    </ion-item>
+    <ion-item>
+        <ion-icon name='contact' item-left></ion-icon>
+        User Name
+        <ion-note item-right>
+            {{user?.login.username}}
+        </ion-note>
     </ion-item>
 
     <ion-item>

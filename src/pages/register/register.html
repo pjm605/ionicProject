@@ -1,7 +1,7 @@
 
 <ion-header>
 
-  <ion-navbar color="dark">
+  <ion-navbar color="puerto">
     <ion-title>register</ion-title>
   </ion-navbar>
 
@@ -17,9 +17,13 @@
           <ion-list inset>
             
             <ion-item>
-              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+              <ion-input type="text" placeholder="Name" name="name" [(ngModel)]="registerCredentials.name" required></ion-input>
             </ion-item>
             
+            <ion-item>
+              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+            </ion-item>
+
             <ion-item>
               <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
             </ion-item>

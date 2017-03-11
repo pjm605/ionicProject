@@ -3,10 +3,10 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { RandomUser } from '../providers/random-user';
-import { AuthService } from '../providers/auth-service';
 
 import { RegisterPage } from '../pages/register/register';
 import { LoginPage } from '../pages/login/login';
+import { LoginDetailsPage } from '../pages/login-details/login-details';
 import { UsersPage } from '../pages/users/users';
 import { UserDetailsPage } from '../pages/user-details/user-details';
 import { NotesPage } from '../pages/notes/notes';
@@ -28,7 +28,8 @@ const cloudSettings: CloudSettings = {
     UserDetailsPage,
     LoginPage,
     RegisterPage,
-    NotesPage
+    NotesPage,
+    LoginDetailsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -41,8 +42,9 @@ const cloudSettings: CloudSettings = {
     UserDetailsPage,
     LoginPage,
     RegisterPage,
-    NotesPage
+    NotesPage,
+    LoginDetailsPage
   ],
-  providers: [AuthService, RandomUser, {provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [RandomUser, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}
