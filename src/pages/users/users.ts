@@ -3,11 +3,12 @@ import { NavController } from 'ionic-angular';
 
 import { User } from '../../models/user';
 
-import { AuthService } from '../../providers/auth-service';
 import { RandomUser } from '../../providers/random-user';
 
 import { UserDetailsPage } from '../user-details/user-details';
 import { LoginPage } from '../login/login';
+
+import { Auth } from '@ionic/cloud-angular';
 
 @Component({
   selector: 'page-users',
@@ -20,20 +21,18 @@ export class UsersPage {
   username = "";
   email = "";
 
-  constructor(public navCtrl: NavController, private randomUsers: RandomUser, private auth: AuthService) {
-    let info = this.auth.getUserInfo();
-
+  constructor(public navCtrl: NavController, private randomUsers: RandomUser,
+    public auth: Auth
+  ) {
     randomUsers.load().subscribe(users => {
       this.users = users;
       this.originalUsers = users;
     });
-
   }
 
     public logout () {
-      this.auth.logout().subscribe(succ => {
-        this.navCtrl.setRoot(LoginPage)
-      })
+      this.auth.logout();
+      this.navCtrl.setRoot(LoginPage);
     }
     
    goToDetails(selectedUser: any) {

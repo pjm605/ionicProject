@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { AuthService } from '../../providers/auth-service';
+import { Auth, UserDetails } from '@ionic/cloud-angular';
 
 @Component({
   selector: 'page-register',
@@ -10,19 +10,24 @@ export class RegisterPage {
 	createSuccess = false;
 	registerCredentials = { email: '', password: ''};
 
-  constructor(private navCtrl: NavController, public navParams: NavParams, private auth: AuthService, private alertCtrl: AlertController) {}
+  constructor(private navCtrl: NavController, public navParams: NavParams,
+    public auth: Auth, private alertCtrl: AlertController) {}
 
   public register () {
-  	this.auth.register(this.registerCredentials).subscribe(success => {
-  		if(success) {
-  			this.createSuccess = true;
-  				this.showPopup("Success", "Account created.");
-  		} else {
-  			this.showPopup("Error", "Problem creating account.");
-  		}
-  	}, error => {
-  		this.showPopup("Error", error);
-  	});
+    let userDetails: UserDetails = {
+      'email': this.registerCredentials.email,
+      'password': this.registerCredentials.password};
+
+    this.auth.signup(userDetails).then(() => {
+      this.createSuccess = true;
+      this.showPopup("Success", "Account created.");
+      this.auth.login('basic', {
+        'email': userDetails.email,
+        'password': userDetails.password
+      });
+    }, (err) => {
+      this.showPopup("Error", err);
+    });
   }
 
   showPopup (title, text) {

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, Loading } from 'ionic-angular';
-import { AuthService } from '../../providers/auth-service';
 import { RegisterPage } from '../register/register';
 import { UsersPage } from '../users/users';
+
+import { Auth } from '@ionic/cloud-angular';
 
 /*
   Generated class for the Login page.
@@ -19,27 +20,29 @@ export class LoginPage {
 	loading: Loading;
 	registerCredentials = { email: '', password: ''};
 
-  constructor(private navCtrl: NavController, public navParams: NavParams, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {}
+  constructor(private navCtrl: NavController, public navParams: NavParams,
+    private auth: Auth, private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController) {}
 
   public createAccount () {
   	this.navCtrl.push(RegisterPage);
   }
 
   public login() {
-  	this.showLoading()
-  	this.auth.login(this.registerCredentials).subscribe(allowed => {
-  		if(allowed) {
-  			setTimeout(() => {
-  				this.loading.dismiss();
-  				this.navCtrl.setRoot(UsersPage)
-  			});
-  		} else {
-  			this.showError("Access Denied");
-  		}
-  	},
-  	error => {
-  		this.showError(error);
-  	});
+  	this.showLoading();
+
+    this.auth.login('basic', {
+      'email': this.registerCredentials.email,
+      'password': this.registerCredentials.password}).then(() => {
+        console.log("login good");
+          setTimeout(() => {
+          this.loading.dismiss();
+          this.navCtrl.setRoot(UsersPage)
+        });
+      }, (err) => {
+        console.log(err.message);
+        this.showError("Access Denied");
+      });
   }
 
   showLoading() {
