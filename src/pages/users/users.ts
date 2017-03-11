@@ -26,7 +26,8 @@ export class UsersPage {
     randomUsers.load().subscribe(users => {
       this.users = users;
       this.originalUsers = users;
-    })
+    });
+
   }
 
     public logout () {
@@ -37,6 +38,18 @@ export class UsersPage {
     
    goToDetails(selectedUser: any) {
       this.navCtrl.push(UserDetailsPage, {selectedUser});
+   }
+
+   search(ev: any) {
+    this.users = this.originalUsers;
+
+    let term = ev.target.value;
+
+    if(term && term.trim() != '') {
+      this.users = this.users.filter((user) => {
+        return (user.email.toLowerCase().indexOf(term.toLowerCase()) > -1);
+      })
+     }
    }
 
 }

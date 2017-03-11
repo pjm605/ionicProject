@@ -14,7 +14,7 @@ export class UserDetailsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   	this.selectedUser = navParams.get('selectedUser');
     this.user = this.selectedUser;
-
+    console.log(this.user)
   }
 
 }
