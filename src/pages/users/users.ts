@@ -52,4 +52,16 @@ export class UsersPage {
      }
    }
 
+   onInfiniteScroll(infiniteScroll) {
+     setTimeout(() => {
+       this.randomUsers.load().subscribe(users => {
+         for (let i = 0; i < users.length; i++) {
+          this.users.push(users[i]);
+         }
+       });
+
+       infiniteScroll.complete();
+     }, 500);
+   }
+
 }

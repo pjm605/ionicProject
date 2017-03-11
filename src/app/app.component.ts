@@ -6,6 +6,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { UsersPage } from '../pages/users/users';
 import { LoginPage } from '../pages/login/login';
+import { NotesPage } from '../pages/notes/notes';
 
 @Component({
   templateUrl: 'app.html'
@@ -25,6 +26,7 @@ export class MyApp {
 
     this.pages = [
       { title: 'Users', component: UsersPage },
+      { title: 'Notes', component: NotesPage }
     ];
   }
 

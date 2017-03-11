@@ -9,7 +9,7 @@ import { RegisterPage } from '../pages/register/register';
 import { LoginPage } from '../pages/login/login';
 import { UsersPage } from '../pages/users/users';
 import { UserDetailsPage } from '../pages/user-details/user-details';
-
+import { NotesPage } from '../pages/notes/notes';
 
 
 @NgModule({
@@ -18,7 +18,8 @@ import { UserDetailsPage } from '../pages/user-details/user-details';
     UsersPage,
     UserDetailsPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    NotesPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -29,7 +30,8 @@ import { UserDetailsPage } from '../pages/user-details/user-details';
     UsersPage,
     UserDetailsPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    NotesPage
   ],
   providers: [AuthService, RandomUser, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
