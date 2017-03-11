@@ -12,20 +12,9 @@ export class RandomUser {
   constructor(public http: Http) {}
 
    load(): Observable<User[]> {
-		return this.http.get(`${this.randomUserApiUrl}/?results=10`)
+		return this.http.get(`${this.randomUserApiUrl}/?results=20`)
 			.map(res => <User[]>(res.json().results));
 	}
 }
 
 
-
-
-  // loadDetails(login: string): Observable<User> {
-  // 	return this.http.get(`${this.githubApiUrl}/users/${login}`)
-  // 		.map(res => <User>(res.json()));
-  // }
-
-  // searchUsers(searchParam: string): Observable<User[]> {
-  //   return this.http.get(`${this.githubApiUrl}/search/users?q=${searchParam}`) 
-  //     .map(res => <User[]>(res.json().items))
-  // }
