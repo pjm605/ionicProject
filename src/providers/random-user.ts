@@ -11,7 +11,7 @@ export class RandomUser {
 
   constructor(public http: Http) {}
 
-  // loads random users from the randomuser.me api, returns returns an arry of Users
+  // loads random users from the randomuser.me api, returns an arry of Users
   load(): Observable<User[]> {
 		return this.http.get(`${this.randomUserApiUrl}/?results=20`)
 			.map(res => <User[]>(res.json().results));

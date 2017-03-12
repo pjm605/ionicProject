@@ -9,6 +9,16 @@ page-users {
   	ion-searchbar, ion-card {
   	  border-radius: 10px !important;
   	}
+
+    .filter {
+      padding: 20px 20px 0px 20px;
+      ion-label {
+        text-align: left;
+      }
+      .filter-title {
+        font-size: 1.3em;
+      }
+    }
   
   } 
 }
