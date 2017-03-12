@@ -12,12 +12,12 @@ page-login-details {
     }
 
 
-  	.signup-col {
+  	.signup-col  {
        margin: 0px 16px 0px 16px;
        padding-bottom: 20px;
     }
 
-    .submit-btn {
+    .submit-btn, {
        background: color($colors, ask);
        color: white;
        border-radius: 30px !important;
@@ -26,6 +26,11 @@ page-login-details {
 
     .submit-btn:hover {
        background: color($colors, puerto);
+    }
+
+    .save-btn {
+      border-radius: 20px !important;
+      border: 1px solid !important;
     }
   }
 }

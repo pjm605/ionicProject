@@ -19,20 +19,28 @@
   	  <ion-list>
         <ion-item>
           <ion-icon name='contact' item-left></ion-icon>
-          Name
-          <ion-note item-right>
-            {{name}}
-          </ion-note>
+            <ion-input name="name" [(ngModel)]="name"></ion-input>
         </ion-item>
         <ion-item>
           <ion-icon name='mail' item-left></ion-icon>
-          Email
-          <ion-note item-right>
-            {{email}}
-          </ion-note>
+            <ion-note item-right>
+              {{email}}
+            </ion-note>
         </ion-item>
+        <ion-item>
+              <button ion-button class="save-btn" full block clear (click)="save()">Save Change</button>
+        </ion-item>
+
   	  </ion-list>
+
+
 	</ion-row>
+
+<!--   <ion-row>
+    <ion-col class="save-col">
+      <button ion-button class="save-btn" full block clear (click)="save()">Save Change</button>
+    </ion-col>
+  </ion-row> -->
 
 	<ion-row>
 	  <ion-col class="signup-col">
