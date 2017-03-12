@@ -1,7 +1,7 @@
 page-register {
-  .login-content {
+  .register-content {
  
-    .login-box {
+    .register-box {
       background: color($colors, ask);
       padding: 20px 20px 0px 20px;
       margin-top: 30px;
@@ -33,9 +33,14 @@ page-register {
      }
  
      .submit-btn {
-       background: #51CFB1;
+       background: color($colors, puerto);
        border-radius: 30px !important;
        border: 1px solid #ffffff;
      }
+
+     .submit-btn:hover {
+       background: color($colors, crowd);
+    }
+
   }
 }

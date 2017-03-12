@@ -1,0 +1,25 @@
+page-login {
+  .login-content {
+
+  	.login-box {
+      padding: 20px 20px 0px 20px;
+      margin-top: 30px;
+    }
+
+    .signup-col {
+       margin: 0px 16px 0px 16px;
+       padding-bottom: 20px;
+    }
+
+    .submit-btn, .register-btn {
+       background: color($colors, puerto);
+       border-radius: 30px !important;
+       border: 1px solid #ffffff;
+       color: #ffffff;
+    }
+
+    .submit-btn:hover, .register-btn:hover  {
+       background: color($colors, crowd);
+    }
+  }
+}

@@ -1,10 +1,8 @@
 
 <ion-header>
-
-  <ion-navbar>
+  <ion-navbar color="eastbay">
     <ion-title>{{user?.name.first}}'s Details</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
@@ -12,7 +10,7 @@
   <ion-list>
 
     <ion-list-header>
-      Profile 
+     <h1> Profile </h1>
     </ion-list-header>
     <ion-item>
       <ion-thumbnail item-left>
@@ -22,11 +20,19 @@
       </ion-thumbnail>
       <h2 text-uppercase >{{user?.name.first}} {{user?.name.last}}</h2>
       <p>{{user?.email}}</p>
-
+      <button ion-button icon-only clear small color="twitter">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </button>
+      <button ion-button icon-only clear small color="github">
+        <ion-icon name="logo-github"></ion-icon>
+      </button>
+      <button ion-button icon-only clear small color="instagram">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </button>
     </ion-item>
     <ion-item>
         <ion-icon name='contact' item-left></ion-icon>
-        User Name
+        Username
         <ion-note item-right>
             {{user?.login.username}}
         </ion-note>
