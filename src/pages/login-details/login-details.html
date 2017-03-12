@@ -28,19 +28,13 @@
             </ion-note>
         </ion-item>
         <ion-item>
-              <button ion-button class="save-btn" full block clear (click)="save()">Save Change</button>
+              <button ion-button class="save-btn" full block clear [disabled]="!name || name === originalName" (click)="save()">Save Change</button>
         </ion-item>
 
   	  </ion-list>
 
 
 	</ion-row>
-
-<!--   <ion-row>
-    <ion-col class="save-col">
-      <button ion-button class="save-btn" full block clear (click)="save()">Save Change</button>
-    </ion-col>
-  </ion-row> -->
 
 	<ion-row>
 	  <ion-col class="signup-col">

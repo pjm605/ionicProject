@@ -11,8 +11,6 @@ import { UsersPage } from '../pages/users/users';
 import { UserDetailsPage } from '../pages/user-details/user-details';
 import { NotesPage } from '../pages/notes/notes';
 
-import { Auth } from '@ionic/cloud-angular';
-
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
 const cloudSettings: CloudSettings = {

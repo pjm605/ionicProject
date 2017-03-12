@@ -17,6 +17,17 @@
 <ion-content class="users-content" padding>
   <div class="users-box">
     <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
+
+    <ion-label>Filter By</ion-label>
+    <ion-item>
+      <ion-label>Gender</ion-label>
+      <ion-select [(ngModel)]="gender" (ionChange)="filterByGender(gender)">
+        <ion-option value="all" selected="true">All</ion-option>
+        <ion-option value="female">Female</ion-option>
+        <ion-option value="male">Male</ion-option>
+      </ion-select>
+    </ion-item>
+
     <ion-card>
       <ion-list>
         <button ion-item *ngFor="let user of users" (click)="goToDetails(user)">

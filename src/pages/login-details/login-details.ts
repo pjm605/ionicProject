@@ -1,16 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 
 import { Auth, User } from '@ionic/cloud-angular';
 
 import { LoginPage } from '../login/login';
 
-/*
-  Generated class for the LoginDetails page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-login-details',
   templateUrl: 'login-details.html'
@@ -18,10 +14,11 @@ import { LoginPage } from '../login/login';
 export class LoginDetailsPage {
   name = "";
   email = "";
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: Auth, public user: User) {
+  originalName = "";
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: Auth, public user: User, private toastCtrl: ToastController) {
   	this.name = this.user.details.name;
   	this.email = this.user.details.email;
+    this.originalName = this.name;
   }
 
   ionViewDidLoad() {
@@ -31,6 +28,28 @@ export class LoginDetailsPage {
   logOff() {
   	this.auth.logout();
   	this.navCtrl.setRoot(LoginPage);
+  }
+
+  save() {
+    if(!this.name) {
+      this.name = this.originalName;
+      return;
+    }
+    this.user.details.name = this.name;
+    this.user.save();
+    this.originalName = this.name;
+    this.presentToast();
+  }
+
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'New name saved',
+      duration: 2000,
+      position: 'bottom',
+      cssClass: "toast-saved"
+    });
+
+    toast.present();
   }
 
 }

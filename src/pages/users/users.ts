@@ -16,31 +16,33 @@ import { Auth } from '@ionic/cloud-angular';
 })
 export class UsersPage {
 	users: User[]
-  originalUsers: User[];
+  masterUsers: User[];
 
   username = "";
   email = "";
+  gender = "";
+  filteredUsers: any;
 
-  constructor(public navCtrl: NavController, private randomUsers: RandomUser,
-    public auth: Auth
-  ) {
+  constructor(public navCtrl: NavController, private randomUsers: RandomUser, public auth: Auth) {
+    this.gender = "all";
+
     randomUsers.load().subscribe(users => {
-      this.users = users;
-      this.originalUsers = users;
+      this.masterUsers = users;
+      this.users = this.masterUsers;
     });
   }
 
-    public logout () {
-      this.auth.logout();
-      this.navCtrl.setRoot(LoginPage);
-    }
+  public logout () {
+    this.auth.logout();
+    this.navCtrl.setRoot(LoginPage);
+  }
     
-   goToDetails(selectedUser: any) {
-      this.navCtrl.push(UserDetailsPage, {selectedUser});
-   }
+  goToDetails(selectedUser: any) {
+    this.navCtrl.push(UserDetailsPage, {selectedUser});
+  }
 
-   search(ev: any) {
-    this.users = this.originalUsers;
+  search(ev: any) {
+    this.users = this.masterUsers;
 
     let term = ev.target.value;
 
@@ -48,19 +50,31 @@ export class UsersPage {
       this.users = this.users.filter((user) => {
         return (user.email.toLowerCase().indexOf(term.toLowerCase()) > -1);
       })
-     }
-   }
+    } else {
+      this.filterByGender(this.gender);
+    }
+  }
 
-   onInfiniteScroll(infiniteScroll) {
-     setTimeout(() => {
-       this.randomUsers.load().subscribe(users => {
-         for (let i = 0; i < users.length; i++) {
-          this.users.push(users[i]);
-         }
-       });
+  onInfiniteScroll(infiniteScroll) {
+    setTimeout(() => {
+      this.randomUsers.load().subscribe(users => {
+        for (let i = 0; i < users.length; i++) {
+         this.masterUsers.push(users[i]);
+        }
+      });
 
-       infiniteScroll.complete();
-     }, 500);
-   }
+      infiniteScroll.complete();
+      this.filterByGender(this.gender);
+    }, 500);
+  }
+
+  filterByGender(gender) {
+    this.users = this.masterUsers;
+    if(gender === "male" || gender === "female") {
+      this.users = this.users.filter((user) => {
+        return (user.gender.toLowerCase() === gender);
+      });
+    }
+  }
 
 }

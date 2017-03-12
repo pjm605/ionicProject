@@ -6,7 +6,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="user-details-content" padding>
   <ion-list>
 
     <ion-list-header>
@@ -20,16 +20,18 @@
       </ion-thumbnail>
       <h2 text-uppercase >{{user?.name.first}} {{user?.name.last}}</h2>
       <p>{{user?.email}}</p>
-      <button ion-button icon-only clear small color="twitter">
+      <button ion-button icon-only clear small color="crowd">
         <ion-icon name="logo-twitter"></ion-icon>
       </button>
-      <button ion-button icon-only clear small color="github">
+      <button ion-button icon-only clear small color="crowd">
         <ion-icon name="logo-github"></ion-icon>
       </button>
-      <button ion-button icon-only clear small color="instagram">
+      <button ion-button icon-only clear small color="crowd">
         <ion-icon name="logo-instagram"></ion-icon>
       </button>
     </ion-item>
+    <br>
+    
     <ion-item>
         <ion-icon name='contact' item-left></ion-icon>
         Username
