@@ -12,7 +12,8 @@ export class NotesPage {
   notes: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private auth: Auth,
-   public alertCtrl: AlertController) {
+   public alertCtrl: AlertController, public user: User) {
+    this.loadNotes();
   }
 
 	public logout () {
@@ -34,6 +35,7 @@ export class NotesPage {
           text: 'Add',
           handler: data => {
             this.notes.push(data);
+            this.saveNotes();
           }
         }
       ]
@@ -59,6 +61,7 @@ export class NotesPage {
 
             if(index > -1) {
               this.notes[index] = data;
+              this.saveNotes();
             }
           }
         }
@@ -74,7 +77,26 @@ export class NotesPage {
 
     if(index > -1) {
       this.notes.splice(index, 1);
+      this.saveNotes();
     }
+  }
+
+  loadNotes() {
+    let savedNotesJson = this.user.get("notes", "");
+    if(savedNotesJson === null) {
+      return;
+    }
+
+    let savedNotes = JSON.parse(savedNotesJson);
+    for (let i = 0; i < savedNotes.length; i++) {
+      this.notes.push(savedNotes[i]);
+    }
+  }
+
+  saveNotes() {
+    let notesJson = JSON.stringify(this.notes);
+    this.user.set("notes", notesJson);
+    this.user.save();
   }
 
 
