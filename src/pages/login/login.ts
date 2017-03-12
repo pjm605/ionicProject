@@ -10,60 +10,63 @@ import { Auth } from '@ionic/cloud-angular';
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
-*/
+  */
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html'
+    selector: 'page-login',
+    templateUrl: 'login.html'
 })
+
 export class LoginPage {
+    loading: Loading;
+    registerCredentials = { email: '', password: ''};
 
-	loading: Loading;
-	registerCredentials = { email: '', password: ''};
+    constructor(private navCtrl: NavController, public navParams: NavParams,
+        private auth: Auth, private alertCtrl: AlertController,
+        private loadingCtrl: LoadingController) {}
 
-  constructor(private navCtrl: NavController, public navParams: NavParams,
-    private auth: Auth, private alertCtrl: AlertController,
-    private loadingCtrl: LoadingController) {}
+    // goes to Register Page for new account creation
+    public createAccount () {
+        this.navCtrl.push(RegisterPage);
+    }
 
-  public createAccount () {
-  	this.navCtrl.push(RegisterPage);
-  }
+    // try to login with user email and password, go to userpage if successful
+    // else show error message
+    public login() {
+        this.showLoading();
 
-  public login() {
-  	this.showLoading();
+        this.auth.login('basic', {
+            'email': this.registerCredentials.email,
+            'password': this.registerCredentials.password}).then(() => {
+                console.log("login good");
+                setTimeout(() => {
+                    this.loading.dismiss();
+                    this.navCtrl.setRoot(UsersPage)
+                });
+            }, (err) => {
+                console.log(err.message);
+                this.showError("Access Denied");
+            });
+    }
 
-    this.auth.login('basic', {
-      'email': this.registerCredentials.email,
-      'password': this.registerCredentials.password}).then(() => {
-        console.log("login good");
-          setTimeout(() => {
-          this.loading.dismiss();
-          this.navCtrl.setRoot(UsersPage)
+    showLoading() {
+        this.loading = this.loadingCtrl.create({
+            content: 'Please wait....'
         });
-      }, (err) => {
-        console.log(err.message);
-        this.showError("Access Denied");
-      });
-  }
+        this.loading.present();
+    }
 
-  showLoading() {
-  	this.loading = this.loadingCtrl.create({
-  		content: 'Please wait....'
-  	});
-  	this.loading.present();
-  }
+    showError(text) {
+        setTimeout(() => {
+            this.loading.dismiss();
+        });
 
-  showError(text) {
-  	setTimeout(() => {
-  		this.loading.dismiss();
-  	});
-
-  	let alert = this.alertCtrl.create({
-  		title: 'Fail',
-  		subTitle: text,
-  		buttons: ['OK']
-  	});
-  	alert.present(prompt);
-  }
+        let alert = this.alertCtrl.create({
+            title: 'Fail',
+            subTitle: text,
+            buttons: ['OK']
+        });
+        alert.present(prompt);
+    }
 
 }
 

@@ -13,6 +13,7 @@ import { NotesPage } from '../pages/notes/notes';
 
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
+//set the ionic.io app_id to use Auth
 const cloudSettings: CloudSettings = {
   'core': {
     'app_id': 'e11c0b6e'
