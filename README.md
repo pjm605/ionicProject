@@ -1,4 +1,5 @@
 # ionicProject
+# Description
 
 This is a small web application built on ionic 2 to demo some features of ionic 2.
 This application demonstrates
@@ -18,7 +19,6 @@ When a user is clicked, it will take you to the user details page.
 There is also a Notes page where the user can add,edit, and delete notes that persist with the user.
 On the Login Details page, the user can log out 
 
-## Description
 
 # Nav Bar
 Once a user is logged in, they will see a side nav bar, which they can use to switch pages.
@@ -69,7 +69,7 @@ I change the font of the application and changed the colorscheme of the applicat
 There is also a log off icon on the top of the Users and Notes page that the user can use to log off the session.
 
 
-## Installation
+# Installation
 
 ```
 $ npm install
